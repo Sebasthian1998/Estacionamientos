@@ -3,7 +3,7 @@
 <head>
 <title>Estacionamientos</title>
 <meta charset="utf-8" />
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAam6BH70JsJpH1YjpIGR1Sdo9FEKf4Mg
 &libraries=places"
 ></script>
@@ -11,9 +11,13 @@
 
 </head>
 <body onload="initMap()">
- <h1>Mapa de Estacionamientos</h1>
- <h2>Seleccione el estacionamiento más cercano para usted</h2>
- <div id="mapa" style="width: 750px; height:700px;"> </div>
+
+    <div class="container-fluid ">
+        <h1 class="d-flex justify-content-center">Mapa de Estacionamientos</h1>
+        <h2 class="d-flex justify-content-center">Seleccione el estacionamiento más cercano para usted</h2>
+        <div class="ml-auto mr-auto" id="mapa" style="width: 750px; height:700px;"> </div>
+    </div>
+
  <script type="text/javascript" src="google.js"></script>
 
 </body>

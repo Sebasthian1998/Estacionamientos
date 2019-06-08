@@ -5,24 +5,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
   <title>CRUD con Firebase</title>
 </head>
 
 <body>
-    <h1>Nombre: <span id="Name"></span></h1>
-    <h2 >Quedan <span id="cupos"></span></h2>
-    <button id="Reservabtn">Reservar</button>
-    <button id="Salidabtn">Salir</button>
+    <div class="container">
+        <h1>Nombre: <span id="Name"></span></h1>
+        <h2 >Quedan <span id="cupos"></span></h2>
+        <button id="Reservabtn">Reservar</button>
+        <button id="Salidabtn">Salir</button>
 
-  <!--<form>
-    <input type="text" id="name" placeholder="Tu nombre" required>
-    <br>
-    <input type="email" id="email" placeholder="Tu email" required>
-    <br>
-    <input type="hidden" id="id">
-    <input type="submit" value="Salvar">
-  </form>-->
-  <ul id="contacts"></ul>
+      <!--<form>
+        <input type="text" id="name" placeholder="Tu nombre" required>
+        <br>
+        <input type="email" id="email" placeholder="Tu email" required>
+        <br>
+        <input type="hidden" id="id">
+        <input type="submit" value="Salvar">
+      </form>-->
+      <ul id="contacts"></ul>
+    </div>
   <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
   <script>
     
