@@ -24,7 +24,7 @@
               )
                 .then(user => {
                   c(user)
-                  window.location='../Maps/index.html'
+                  //window.location='../Maps/index.html'
                  // e.target.reset()
                 })
                 .catch(err => {

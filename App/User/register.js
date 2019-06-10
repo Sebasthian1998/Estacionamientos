@@ -24,9 +24,16 @@
     userPass=d.getElementById('password')
     if(Registerbtn){
         //Boton para registrar
-        Registerbtn.addEventListener('click',e=>{
+        Registerbtn.addEventListener('submit',e=>{
             e.preventDefault()
-            c(userEmail.value)
+            agregados=[...d.querySelectorAll('.agregados')]
+            
+            let jsonplacas=[]
+            //c(agregados[0].value)
+            for(let i=0; i<agregados.length;i++){
+              jsonplacas.push({"Placa":agregados[i].value})//para insertar dinamicamente datos en el json
+            }
+            //c(jsonplacas)
             auth.createUserWithEmailAndPassword( //Metodo propio de firebase
                 userEmail.value, //e.target valor que origina el evento
                 userPass.value //Esto es una promesa
@@ -39,42 +46,29 @@
                   userName.value,
                   userEmail.value,
                   userSurname.value,
-                  userDni.value
+                  userDni.value,
+                  jsonplacas
                 )
+                window.location='../Maps/index.html'
               })
               .catch(err => {//Capturamos el error, tiene mas opciones
                 c(err)
                 //message.innerHTML = `<p class="error">La cuenta de correo <b>${e.target.email.value}</b> ya existe. Intenta con otra.</p>`
                 e.target.name.focus() //Poner el foco de pagina en ese 
               })
-
-
-            /*
-            let id = userId.value || usersRef.push().key,//Campo oculto en form, key para una insercion a eseobjeto y obtener la llave
-            userData = {
-            name: userName.value,
-            email: userEmail.value,
-            dni: userDni.value,
-            surname: userSurname.value,
-            password: userPass.value
-          },
-          updateData = {}
-            updateData[`/${id}`] = userData //Para que siga esa ruta de la bd en real tume
-            usersRef.update(updateData) //Actualizar la referencia del nuevo elemento
-            userId.value = ''  */ 
-           //   window.location='../Maps/index.html'
         })
     }
     placadiv.addEventListener('click', e=>{
          paintplacas()
     })
-    function createUserInDB(uid, name, email,surname,dni) { //Funcion que se invoca mas abajo, para poder insertar en la base de datos
+    function createUserInDB(uid, name, email,surname,dni,placas) { //Funcion que se invoca mas abajo, para poder insertar en la base de datos
         let usersRef = f.database().ref().child('users')
         usersRef.child(uid).set({ //El primer parametro sera para que se cree con ese ID unico
           name, //Si los parametros se llaman igual a lo que se quiere almacenar en el objeto json se deja asi
           email,
           surname,
-          dni
+          dni,
+          placas
         })
       }
     function paintplacas(){
@@ -83,7 +77,7 @@
             for(let i=0; i<placaid ;i++){
             let li=d.createElement('span')
             li.innerHTML=`
-            <input class="agregados" value="" placeholder="IngresePlaca">`
+            <input name="agregados" class="agregados"  placeholder="IngresePlaca">`
             placasid.appendChild(li)
             }
         }
