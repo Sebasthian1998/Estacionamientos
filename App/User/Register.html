@@ -8,17 +8,21 @@
 </head>
 <body>
     <form action="">
+        <input type="hidden" id="id" >
         <label for="">Correo
-            <input type="text">
+            <input type="text" id="email" >
         </label>
         <label for="">Contraseña
-            <input type="password">
+            <input type="password" id="password" autocomplete="off">
         </label>
         <label for="">DNI
-            <input type="password">
+            <input type="text" id="dni" autocomplete="off">
         </label>
-        <label for="">Contraseña
-            <input type="password">
+        <label for="">Nombre
+            <input type="text" id="name" autocomplete="off">
+        </label>
+        <label for="">Apellido
+            <input type="text" id="surname" autocomplete="off">
         </label>
         <div id="placadiv">
         <select name="placa" id="placa">
@@ -34,6 +38,7 @@
     
 
 
+    <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
     <script type="text/javascript" src="register.js"></script>
 </body>
 </html>

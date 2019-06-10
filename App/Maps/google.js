@@ -2,6 +2,7 @@
  let map
  let infowindow
  let lugar 
+ 
  function initMap()
  {
  // Creamos un mapa con las coordenadas actuales
@@ -59,14 +60,16 @@
      setTimeout (redireccion(place), 4000);//Aca se puede poner una funcion de espera 
    });
 }
+let mapaid=''
+let mapalugar=''
 
 function redireccion(place){  
-
+  
     sessionStorage.setItem("id", place.id);
     sessionStorage.setItem("lugar", place.name);
-    //console.log(place)
+    console.log(place.id)
+    
     window.location='../Reserva/Reserva.html'
-
    /*
    const xhr=new XMLHttpRequest()
    xhr.open('GET','Reserva.html',true)
