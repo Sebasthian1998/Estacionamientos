@@ -27,7 +27,7 @@
         Registerbtn.addEventListener('submit',e=>{
             e.preventDefault()
             agregados=[...d.querySelectorAll('.agregados')]
-            
+            validatedata(userDni.value)
             let jsonplacas=[]
             //c(agregados[0].value)
             for(let i=0; i<agregados.length;i++){
@@ -61,6 +61,17 @@
     placadiv.addEventListener('click', e=>{
          paintplacas()
     })
+    function validatedata(dni){
+      
+      var ex_regular_dni; 
+      ex_regular_dni = /^\d{8}$/;
+      c(ex_regular_dni.test(dni))
+      if(ex_regular_dni.test(dni) == true){
+          alert('Dni corresponde');
+      }else{
+       alert('Dni erroneo, formato no válido');
+      }
+    }
     function createUserInDB(uid, name, email,surname,dni,placas) { //Funcion que se invoca mas abajo, para poder insertar en la base de datos
         let usersRef = f.database().ref().child('users')
         usersRef.child(uid).set({ //El primer parametro sera para que se cree con ese ID unico
