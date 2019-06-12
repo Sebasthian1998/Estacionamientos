@@ -20,16 +20,14 @@
     if(Loginbtn){
         Loginbtn.addEventListener('submit',e=>{
             e.preventDefault()
-            c(e.target.email)
+            //c(e.target.email)
             auth.signInWithEmailAndPassword(
                 e.target.email.value,
                 e.target.password.value
               )
                 .then(user => {
                   dibujarplaca(e.target.email.value)
-                  //c(user)
-                  //window.location='../Maps/index.html'
-                 // e.target.reset()
+                  habilitar()
                 })
                 .catch(err => {
                   c(err)
@@ -37,12 +35,49 @@
                 })  
         })
     }
+  //https://firebase.google.com/docs/database/web/lists-of-data?authuser=0  Docunmentacion de estas funciones
+  
     function dibujarplaca(email){
-    userRef.orderByChild('email').equalTo(email).on('value',data=>{
-                
-      c(data.val())
+    userRef.orderByChild('email').equalTo(email).on('child_added',data=>{
+      select=d.createElement('select')
+      //a=placaTemplate(data.val(),select,placasdiv) //Tra
+      //c(a)
+      placaTemplate(data.val(),select,placasdiv) 
     })}
 
+    function habilitar(){
+      document.getElementById("Ingresarbtn").disabled = false
+      Ingresarbtn.addEventListener('click',e=>{
+        e.preventDefault
+        window.location='../Maps/index.html'
+      })
+    }
+   
+    function placaTemplate({placas},select,placasdiv) { //Lo que le pasa es un objeto
+      if(placas){
+        let agregados=new Array(placas.length)
+        let span=new Array(placas.length)
+        let message=d.createElement('span')
+        let messagecontent
+        messagecontent=`<p>Seleccione la placa con la que desea ingresar</p>`
+        message.innerHTML=messagecontent
+        for(let i=0;i<placas.length;i++){
+          span[i]=d.createElement('option')
+          agregados[i]=`<span value=${placas[i].Placa} class="agregados">${placas[i].Placa}</span>`
+          c(agregados[i])
+          span[i].innerHTML=agregados[i]
+          select.appendChild(span[i])
+        }
+        placasdiv.appendChild(message)
+        placasdiv.appendChild(select)
+        return placasdiv
+      }
+      
+    }
+    
+})(document,console.log,firebase)
+
+ /*
     userRef.on('child_added', data => {  //On metodo de firebase, child_added,changed y removed son propios de firebase
       
       let li = d.createElement('span')
@@ -51,9 +86,8 @@
       li.innerHTML = contactTemplate(data.val()) //Tra
       placasdiv.appendChild(li)//Aca en el Li lo dibujamos
     })
-
-    function contactTemplate({ dni, email,name,placas,surname }) { //Lo que le pasa es un objeto
-      c(placas)
+*/
+  /*
       return `
         <span class="name">${name}</span>
         -
@@ -65,8 +99,4 @@
         -
         <span class="email">${placas}</span>
       `
-      
-    }
-    
-})(document,console.log,firebase)
-
+      */
