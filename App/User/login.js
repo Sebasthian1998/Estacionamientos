@@ -47,6 +47,7 @@
 
     function habilitar(){
       document.getElementById("Ingresarbtn").disabled = false
+      document.getElementById("Validarbtn").disabled = true
       Ingresarbtn.addEventListener('click',e=>{
         e.preventDefault
         window.location='../Maps/index.html'

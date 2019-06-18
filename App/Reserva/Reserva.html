@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 
 <head>
   <meta charset="UTF-8">
@@ -7,25 +7,51 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
   <title>CRUD con Firebase</title>
+
+   <!--JQUERY-->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+   <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+   
+   <!-- Los iconos tipo Solid de Fontawesome-->
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+   <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+   <!-- Nuestro css-->
+   <link rel="stylesheet" type="text/css" href="css/reserva.css" th:href="@{/css/index.css}">
+
+
 </head>
 
 <body>
-    <div class="container">
-        <h1>Nombre: <span id="Name"></span></h1>
-        <h2 >Quedan <span id="cupos"></span></h2>
-        <button id="Reservabtn">Reservar</button>
-        <button id="Salidabtn">Salir</button>
-
-      <!--<form>
-        <input type="text" id="name" placeholder="Tu nombre" required>
-        <br>
-        <input type="email" id="email" placeholder="Tu email" required>
-        <br>
-        <input type="hidden" id="id">
-        <input type="submit" value="Salvar">
-      </form>-->
-      <ul id="contacts"></ul>
-    </div>
+    <div class="modal-dialog text-center">
+        <div class="col-sm-8 main-section">
+            <div class="modal-content">
+                  <div class="container">
+                      <div  id="nombre-group">
+                        <h1>Nombre: <span id="Name"></span></h1>
+                      </div>  
+                      <div  id="cupos-group">  
+                        <h2 >Quedan <span id="cupos"></span></h2>
+                      </div>
+                      <button id="Reservabtn"class="btn btn-primary">Reservar</button>
+                      <button id="Salidabtn" class="btn btn-primary">Salir</button>
+              
+                    <!--<form>
+                      <input type="text" id="name" placeholder="Tu nombre" required>
+                      <br>
+                      <input type="email" id="email" placeholder="Tu email" required>
+                      <br>
+                      <input type="hidden" id="id">
+                      <input type="submit" value="Salvar">
+                    </form>-->
+                    <ul id="contacts"></ul>
+               </div>
+          </div>
+      </div>            
+    
   <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
   <script>
     

@@ -1,22 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Estacionamientos</title>
-<meta charset="utf-8" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAam6BH70JsJpH1YjpIGR1Sdo9FEKf4Mg
-&libraries=places"
-></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Estacionamientos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAam6BH70JsJpH1YjpIGR1Sdo9FEKf4Mg
+    &libraries=places"
+    ></script>
+
+    <!--JQUERY-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+    <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <!-- Nuestro css-->
+    <link rel="stylesheet" type="text/css" href="css/index.css" th:href="@{/css/index.css}">
 
 
 </head>
-<body onload="initMap()">
 
-    <div class="container-fluid ">
-        <h1 class="d-flex justify-content-center">Mapa de Estacionamientos</h1>
-        <h2 class="d-flex justify-content-center">Seleccione el estacionamiento más cercano para usted</h2>
-        <div class="ml-auto mr-auto" id="mapa" style="width: 750px; height:700px;"> </div>
-    </div>
+<body onload="initMap()">
+        
+                <div class="col-sm-8 main-section"></div>
+                    <div class="modal-content">
+                        <div class="container-fluid ">
+                            <h1 class="d-flex justify-content-center">Mapa de Estacionamientos</h1>
+                            <h2 class="d-flex justify-content-center">Seleccione el estacionamiento más cercano para usted</h2>
+                            <div class="ml-auto mr-auto" id="mapa" style="width: 750px; height:700px;"> </div>
+                        </div>
+                    </div>    
+                
+                </div>
 
  <script type="text/javascript" src="google.js"></script>
 

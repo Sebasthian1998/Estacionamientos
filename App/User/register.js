@@ -40,6 +40,10 @@
               ).then(res => {
                 c(res)
                 c(res.user)
+                c(userName)
+                c(userEmail)
+                c(userSurname)
+                c(userDni)
                 //Insertar el usuario en la BD
                 createUserInDB(
                   res.user.uid, //Que queremos almacenar del usuario que estamos registrando, ese es el id unico que genera firebase
@@ -54,7 +58,7 @@
               .catch(err => {//Capturamos el error, tiene mas opciones
                 c(err)
                 //message.innerHTML = `<p class="error">La cuenta de correo <b>${e.target.email.value}</b> ya existe. Intenta con otra.</p>`
-                e.target.name.focus() //Poner el foco de pagina en ese 
+                //e.target.name.focus() //Poner el foco de pagina en ese 
               })
         })
     }

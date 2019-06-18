@@ -1,0 +1,44 @@
+body{
+    background: url(https://s2.best-wallpaper.net/wallpaper/1920x1080/1703/Red-BMW-car-at-parking-lot_1920x1080.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.main-section{
+    margin:0 auto;
+    margin-top:25%;
+    padding: 0;
+}
+
+.modal-content{
+    background-color: #3b4652;
+    opacity: .85;
+    padding: 0 20px;
+    box-shadow: 0px 0px 3px #848484;
+}
+
+/*h2{
+    
+    font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    text-align-last:left;
+    color: antiquewhite;
+}
+p{
+    font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    text-align-last:left;
+    color: antiquewhite;
+}*/
+
+button{
+    width: 60%;
+    margin: 5px 0 25px;
+}
+
+.forgot{
+    padding: 5px 0;
+}
+
+.forgot a{
+    color: white;
+}

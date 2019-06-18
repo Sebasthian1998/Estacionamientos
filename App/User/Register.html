@@ -1,44 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Registro</title>
+
+     <!--JQUERY-->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+     <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+     
+     <!-- Los iconos tipo Solid de Fontawesome-->
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+     <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+ 
+     <!-- Nuestro css-->
+     <link rel="stylesheet" type="text/css" href="css/register.css" th:href="@{/css/index.css}">
+
 </head>
+
+
 <body>
-    <form action="" id="Registerbtn">
-        <input type="hidden" id="id" >
-        <label for="">Correo
-            <input type="text" name="email" id="email" >
-        </label>
-        <label for="">Contraseña
-            <input type="password" id="password" autocomplete="off" >
-        </label>
-        <label for="">DNI
-            <input type="text" name="dni" id="dni" autocomplete="off" >
-        </label>
-        <label for="">Nombre
-            <input type="text" name="name" id="name" autocomplete="off" >
-        </label>
-        <label for="">Apellido
-            <input type="text" name="password" id="surname" autocomplete="off" >
-        </label>
-        <div id="placadiv">
-        <select name="placa" id="placa">
-            <option value="">Numero de placas</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-        </select>
-        </div>
-        <div id="placas"></div>
-        <button >Registrarse</button>
-    </form>
+        <div class="container-fluid bg-primary sticky-tops">
+                <nav class="navbar navbar-expand-md navbar-dark bg-primary container">
+                        <a class="navbar-brand" href="#">
+                            <img src="bootstrap-solid.svg" width="30" height="30" alt="">
+                            Garage ""
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                    
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto mr-4">
+                            <li class="nav-item">
+                            <a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="../garage.html">Quienes somos?</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Ingresar
+                            </a>
+                            <div class="dropdown-menu active" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="login.html">Inicia sesion</a>
+                                <a class="dropdown-item" href="register.html">Regisrate</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Promociones</a>
+                            </div>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link disabled" href="#">Disabled</a>
+                            </li>
+                        </ul>
+                        <span class="navbar-text text-white">
+                                Contactanos: 939602978
+                        </span>
+                        <!--  <form class="form-inline my-2 my-lg-0">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>   -->
+                        </div>
+                    </nav>
+                    </div><!--NAVBAR-->
+
+        <div class="modal-dialog text-center">
+                <div class="col-sm-8 main-section">
+                    <div class="modal-content">
+                        <div class="col-12 user-img">
+                            <img src="https://static1.squarespace.com/static/58750db89f7456c5d57a81ba/58c6feaaff7c503d7c97ee30/58cb650d2e69cf53d46bdeef/1541799750505/Registrese1.jpg"/>
+                        </div>
+                        <form class="col-12" action="" id="Registerbtn">
+                            <input type="hidden" id="id" >
+
+                           
+                            <div class="form-group" id="email-group">
+                                    <p for="email">Email
+                                        <input type="text" class="form-control" id="email" type="email" name="email" placeholder="Correo electronico" name="correo" autofocus/>
+                                    </p>
+                            </div>
+
+                            <div class="form-group" id="contrasena-group">
+                                    <p for="password">Password 
+                                        <input type="password" id="password" class="form-control" placeholder="Contraseña" name="password"  />
+                                    </p>
+                                </div>
+                                <div class="form-group" id="dni-group">
+                                        <p for="dni">Dni
+                                            <input type="text" id="dni" class="form-control" placeholder="Dni" name="dni"   autocomplete="off"/>
+                                        </p>
+                                </div>
+                                <div class="form-group" id="nombre-group">
+                                        <p for="nombre">Nombre   
+                                                <input type="text" id="name" class="form-control" placeholder="Nombre" name="nombre"   autocomplete="off"/>
+                                        </p>  
+                                </div>
+                                <div class="form-group" id="apellido-group">
+                                        <p for="apellido">Apellido  
+                                            <input type="text" id="surname" class="form-control" placeholder="Apellido" name="apellido"   autocomplete="off"/>
+                                        </p>    
+                                </div>
+                                <div class="form-group" id="placadiv">
+                                        <p for="placa">Placa
+                                            <select name="placa" id="placa" class="form-control"  name="placa"  > 
+    
+                                                    <option value="1">1</option>
+                                                    
+                                                    <option value="2">2</option>
+                                                    
+                                                    <option value="3">3</option>
+                                                    
+                                            </select>
+                                        </p>    
+                                </div>
+            
+                            <div class="form-group" id="placas"></div>
+                            <button class="btn btn-primary"  >Registrarse</button>
+                        </form>
+                    </div>    
+                </div>
+            </div>    
+    
+        <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+        <script type="text/javascript" src="register.js"></script>
+    </body>
     
 
-
-    <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
-    <script type="text/javascript" src="register.js"></script>
-</body>
 </html>
