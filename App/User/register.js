@@ -40,10 +40,7 @@
               ).then(res => {
                 c(res)
                 c(res.user)
-                c(userName)
-                c(userEmail)
-                c(userSurname)
-                c(userDni)
+                
                 //Insertar el usuario en la BD
                 createUserInDB(
                   res.user.uid, //Que queremos almacenar del usuario que estamos registrando, ese es el id unico que genera firebase

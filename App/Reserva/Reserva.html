@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
-  <title>CRUD con Firebase</title>
+  <title>Reserva</title>
 
    <!--JQUERY-->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -27,18 +27,23 @@
 
 <body>
     <div class="modal-dialog text-center">
-        <div class="col-sm-8 main-section">
+        <div class=" main-section">
             <div class="modal-content">
-                  <div class="container">
+                  <div class="">
                       <div  id="nombre-group">
                         <h1>Nombre: <span id="Name"></span></h1>
                       </div>  
                       <div  id="cupos-group">  
                         <h2 >Quedan <span id="cupos"></span></h2>
                       </div>
+                      <div id="clocktime">
+                      <label for="">Tiempo Reserva en minutos
+                        <input id="timeminutes" type="text">
+                      </label>
+                    </div>
                       <button id="Reservabtn"class="btn btn-primary">Reservar</button>
                       <button id="Salidabtn" class="btn btn-primary">Salir</button>
-              
+                      <div id="clock"></div>
                     <!--<form>
                       <input type="text" id="name" placeholder="Tu nombre" required>
                       <br>
