@@ -80,45 +80,48 @@
                            
                             <div class="form-group" id="email-group">
                                     <p for="email">Email
-                                        <input type="text" class="form-control" id="email" type="email" name="email" placeholder="Correo electronico" name="correo" autofocus/>
+                                        <input type="text" required class="form-control" id="email" type="email" name="email" placeholder="Correo electronico" name="correo" autofocus/>
                                     </p>
                             </div>
 
                             <div class="form-group" id="contrasena-group">
                                     <p for="password">Password 
-                                        <input type="password" id="password" class="form-control" placeholder="Contraseña" name="password"  />
+                                        <input type="password" required id="password" class="form-control" placeholder="Contraseña" name="password"  />
                                     </p>
                                 </div>
-                                <div class="form-group" id="dni-group">
-                                        <p for="dni">Dni
-                                            <input type="text" id="dni" class="form-control" placeholder="Dni" name="dni"   autocomplete="off"/>
-                                        </p>
-                                </div>
-                                <div class="form-group" id="nombre-group">
-                                        <p for="nombre">Nombre   
-                                                <input type="text" id="name" class="form-control" placeholder="Nombre" name="nombre"   autocomplete="off"/>
-                                        </p>  
-                                </div>
-                                <div class="form-group" id="apellido-group">
-                                        <p for="apellido">Apellido  
-                                            <input type="text" id="surname" class="form-control" placeholder="Apellido" name="apellido"   autocomplete="off"/>
-                                        </p>    
-                                </div>
-                                <div class="form-group" id="placadiv">
-                                        <p for="placa">Placa
-                                            <select name="placa" id="placa" class="form-control"  name="placa"  > 
+                            
+                            <div class="form-group placa-form" >
+                                    <p>Placa</p>
+                                    <div id="placadiv">
+                                        <select name="placa" required id="placa" class="form-control "  name="placa"  > 
     
-                                                    <option value="1">1</option>
+                                                <option class="optionsform" value="1">1</option>
+                                                 
+                                                <option class="optionsform" value="2">2</option>
                                                     
-                                                    <option value="2">2</option>
+                                                <option class="optionsform" value="3">3</option>
                                                     
-                                                    <option value="3">3</option>
-                                                    
-                                            </select>
+                                        </select>
+                                    </div>  
+                            </div>
+                            <div class="form-group" id="dni-group">
+                                        <p for="dni">Dni
+                                            <input type="text"  required id="dni" class="form-control" placeholder="Dni" name="dni"   autocomplete="off"/>
+                                        </p>
+                            </div>
+                            <div class="form-group" id="nombre-group">
+                                        <p for="nombre">Nombre   
+                                                <input type="text" required id="name" class="form-control" placeholder="Nombre" name="nombre"   autocomplete="off"/>
+                                        </p>  
+                            </div>
+                            <div class="form-group" id="apellido-group">
+                                        <p for="apellido">Apellido  
+                                            <input type="text" required id="surname" class="form-control" placeholder="Apellido" name="apellido"   autocomplete="off"/>
                                         </p>    
-                                </div>
+                            </div>
+                                
             
-                            <div class="form-group" id="placas"></div>
+                            <div class="form-group placa" id="placas"></div>
                             <button class="btn btn-primary"  >Registrarse</button>
                         </form>
                     </div>    

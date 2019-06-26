@@ -18,7 +18,7 @@
      placasdiv=d.getElementById('placas'),
      email=d.getElementById('email')
     if(Loginbtn){
-        Loginbtn.addEventListener('submit',e=>{
+        Loginbtn.addEventListener('submit',e=>{//Boton ingresar
             e.preventDefault()
             //c(e.target.email)
             auth.signInWithEmailAndPassword(
@@ -31,23 +31,26 @@
                 })
                 .catch(err => {
                   c(err)
-                  e.target.password.focus()
+                  alert('Usuario o contraseña no validos')
+                  password.value=''
+                  email.value=''
                 })  
         })
     }
   //https://firebase.google.com/docs/database/web/lists-of-data?authuser=0  Docunmentacion de estas funciones
   
     function dibujarplaca(email){
-    userRef.orderByChild('email').equalTo(email).on('child_added',data=>{
+    userRef.orderByChild('email').equalTo(email).on('child_added',data=>{//Buscamos el usuario por email para traer las placas
       select=d.createElement('select')
-      //a=placaTemplate(data.val(),select,placasdiv) //Tra
-      //c(a)
+      //a=placaTemplate(data.val(),select,placasdiv) 
+      //c(data.val().name)
+      sessionStorage.setItem("username", data.val().name);//Guardamos en session el nombre del usuario
       placaTemplate(data.val(),select,placasdiv) 
     })}
 
-    function habilitar(){
+    function habilitar(){//Habilitar y desailitar botones
       document.getElementById("Ingresarbtn").disabled = false
-      document.getElementById("Validarbtn").disabled = true
+      document.getElementById("Validarbtn").disabled = true//Puede usarse display none
       Ingresarbtn.addEventListener('click',e=>{
         e.preventDefault
         window.location='../Maps/index.html'
@@ -56,8 +59,8 @@
    
     function placaTemplate({placas},select,placasdiv) { //Lo que le pasa es un objeto
       if(placas){
-        let agregados=new Array(placas.length)
-        let span=new Array(placas.length)
+        let agregados=new Array(placas.length)//Crea un array con la cantidad de placas 
+        let span=new Array(placas.length) //Se crea doble para poder insertar
         let message=d.createElement('span')
         let messagecontent
         messagecontent=`<p>Seleccione la placa con la que desea ingresar</p>`
@@ -79,10 +82,8 @@
 })(document,console.log,firebase)
 
  /*
-    userRef.on('child_added', data => {  //On metodo de firebase, child_added,changed y removed son propios de firebase
-      
+    userRef.on('child_added', data => {  //On metodo de firebase, child_added,changed y removed son propios de firebase 
       let li = d.createElement('span')
-
       li.id = data.key//Obtenemos esa llave de firebaes, y le ponemos ese id en el html
       li.innerHTML = contactTemplate(data.val()) //Tra
       placasdiv.appendChild(li)//Aca en el Li lo dibujamos

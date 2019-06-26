@@ -3,7 +3,8 @@
 
     id=sessionStorage.getItem("id")
     lugar=sessionStorage.getItem("lugar")
-     
+    username=sessionStorage.getItem("username")
+    username_id.innerHTML=`<span>${username}</span>`
     //console.log(lugar)
     console.log(id)
     Name.innerHTML=`<span>${lugar}</span>`
@@ -33,13 +34,18 @@ EstacionarRef.orderByChild('ID').equalTo(id).on('child_added',data=>{
      let valor=data.val(),
      key=data.key,
     cantidadactual=valor.CantidadActual
-    c(key)
+    c(cantidadactual)
    
     Reservabtn.addEventListener('click',e=>{
       e.preventDefault()
+      if(timeminutes.value<30){//Validacion, va aca sino el return solo estara al scope del timeuser
+         alert('Ingrese una cantidad valida de minutos')
+         timeminutes.value=''
+         return
+      }
+      timeuser()
       Reservar(key,valor.ID,cantidadactual,valor.Name,valor.Reservas)
       contacts.innerHTML=dibujar(cantidadactual)
-      timeuser()
       Reservabtn.style.display='none'
     })
     Salidabtn.addEventListener('click',e=>{
@@ -47,9 +53,7 @@ EstacionarRef.orderByChild('ID').equalTo(id).on('child_added',data=>{
       salida(key,valor.ID,cantidadactual,valor.Name,valor.Reservas)
       contacts.innerHTML=dibujar(cantidadactual)
     })
-    //li.innerHTML=`<span>${valor.Name} con ${cantidadactual} reservas</span>`
     contacts.innerHTML=dibujar(cantidadactual)
-    //contacts.appendChild(li)//Aca en el span lo dibujamos
 })
 
 EstacionarRef.orderByChild('ID').equalTo(id).on('child_changed', data => {//Trae el elemento modificado de firebase
@@ -103,7 +107,8 @@ function transformminutes(time){//Funcion para transformar los minutos
 
 function timeuser(){
   let now=new Date()
-  timeline=transformminutes(timeminutes.value)
+  
+  timeline=transformminutes(timeminutes.value) //Valor ingresado por el usuario
   c(now.getMinutes())
   c(timeline.hour,timeline.minutes)
   let deadline=new Date(now.getFullYear(),now.getMonth(),now.getDate(),now.getHours()+timeline.hour,now.getMinutes()+timeline.minutes,0)

@@ -26,8 +26,11 @@
         //Boton para registrar
         Registerbtn.addEventListener('submit',e=>{
             e.preventDefault()
-            agregados=[...d.querySelectorAll('.agregados')]
-            validatedata(userDni.value)
+            agregados=[...d.querySelectorAll('.agregados')]//Transformar en array, el json que me trae firebase
+            validate=validatedata(userDni.value)
+            if(!validate){
+              return
+            }
             let jsonplacas=[]
             //c(agregados[0].value)
             for(let i=0; i<agregados.length;i++){
@@ -40,7 +43,7 @@
               ).then(res => {
                 c(res)
                 c(res.user)
-                
+                sessionStorage.setItem("username", userName.value);
                 //Insertar el usuario en la BD
                 createUserInDB(
                   res.user.uid, //Que queremos almacenar del usuario que estamos registrando, ese es el id unico que genera firebase
@@ -50,17 +53,22 @@
                   userDni.value,
                   jsonplacas
                 )
-                window.location='../Maps/index.html'
+                window.location='login.html'
               })
               .catch(err => {//Capturamos el error, tiene mas opciones
                 c(err)
+                alert('El email ingresado ya existe, ingrese otro email')
+                
                 //message.innerHTML = `<p class="error">La cuenta de correo <b>${e.target.email.value}</b> ya existe. Intenta con otra.</p>`
                 //e.target.name.focus() //Poner el foco de pagina en ese 
               })
         })
     }
     placadiv.addEventListener('click', e=>{
-         paintplacas()
+      placadiv.addEventListener('click',e=>{
+        c(e)
+        paintplacas()
+      })     
     })
     function validatedata(dni){
       
@@ -68,9 +76,10 @@
       ex_regular_dni = /^\d{8}$/;
       c(ex_regular_dni.test(dni))
       if(ex_regular_dni.test(dni) == true){
-          alert('Dni corresponde');
+          return true //Trae correcto
       }else{
        alert('Dni erroneo, formato no válido');
+          return false
       }
     }
     function createUserInDB(uid, name, email,surname,dni,placas) { //Funcion que se invoca mas abajo, para poder insertar en la base de datos
