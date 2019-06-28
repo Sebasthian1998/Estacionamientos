@@ -1,13 +1,13 @@
 //import {firebaseConfig} from '../Firebase/firebase';
 ((d, c, f) => { 
-
     id=sessionStorage.getItem("id")
     lugar=sessionStorage.getItem("lugar")
     username=sessionStorage.getItem("username")
-    username_id.innerHTML=`<span>${username}</span>`
+    placauser=sessionStorage.getItem("placa")
+    usernameid.innerHTML=`<span>${username}</span>`
     //console.log(lugar)
     console.log(id)
-    Name.innerHTML=`<span>${lugar}</span>`
+    Name.innerHTML=`<span>${lugar}, ${placauser}</span>`
       
       var firebaseConfig = {
       apiKey: "AIzaSyBhIXl4RhU_cyV-wimje4RDfZwky7yBFYQ",
@@ -45,8 +45,9 @@ EstacionarRef.orderByChild('ID').equalTo(id).on('child_added',data=>{
       }
       timeuser()
       Reservar(key,valor.ID,cantidadactual,valor.Name,valor.Reservas)
-      contacts.innerHTML=dibujar(cantidadactual)
+      contacts.innerHTML=dibujar(cantidadactual) //se supone dibuja, con el nuevo ya no haria eso
       Reservabtn.style.display='none'
+      window.location='Tiempo.html'
     })
     Salidabtn.addEventListener('click',e=>{
       e.preventDefault()
@@ -65,34 +66,6 @@ EstacionarRef.on('child_removed', data => {
  contacts.removeChild(affectedNode)
 })
 
-const getRemainingTime = deadline => {//Funcion para obtener la resta delas fechas
- c(deadline)
-  let now = new Date(),
-      remainTime = (deadline - now + 1000) / 1000,
-      remainSeconds = ('0' + Math.floor(remainTime % 60)).slice(-2),
-      remainMinutes = ('0' + Math.floor(remainTime / 60 % 60)).slice(-2),
-      remainHours = ('0' + Math.floor(remainTime / 3600 % 24)).slice(-2)
-    c(remainTime)
-  return {
-    remainSeconds,
-    remainMinutes,
-    remainHours,
-    remainTime
-  }
-};
-
-const countdown = (deadline,elem,finalMessage) => {//Funcion para dibujar las fechas
-  const el = document.getElementById(elem);
-  
-  const timerUpdate = setInterval( () => {
-    let t = getRemainingTime(deadline);
-    el.innerHTML = `${t.remainHours}h:${t.remainMinutes}m:${t.remainSeconds}s`;
-    if(t.remainTime <= 1) {
-      clearInterval(timerUpdate);
-      el.innerHTML = finalMessage;
-    }
-  }, 1000)
-};
 
 function transformminutes(time){//Funcion para transformar los minutos
   let hour=0,
@@ -115,8 +88,7 @@ function timeuser(){
   sessionStorage.setItem("sessiondeadline", deadline); 
   sessiondead=new Date(sessionStorage.getItem("sessiondeadline")) //Para transformar a date este objeto, necesaria esta linea
   c(sessiondead,"HOLA")
-  countdown(sessiondead, 'clock', '¡Ya empezó!');//En ves de ya empezo va la funcion cuando acabe tiempo
-  clocktime.style.display='none'
+  sessionStorage.setItem("Time",sessiondead)//Para poder trabajar con la hora final calculada en el otro archivo
 }
 
 function dibujar(cantidad){
@@ -128,8 +100,7 @@ function salida(key,uid,cantidad,Name,cantidadMax){
 
   if(cantidad<cantidadMax){
     cantidad=cantidad+1
-    updateInDB(key,uid,cantidad,Name,cantidadMax)
-    
+    updateInDB(key,uid,cantidad,Name,cantidadMax) 
   }
   else{
     return
@@ -137,7 +108,6 @@ function salida(key,uid,cantidad,Name,cantidadMax){
 }
 
 function Reservar(key,uid,cantidad,Name,cantidadMax){
-  const EstacionarRef = db.ref().child('Estacionamientos')
   if(cantidad>0){
     c(cantidad)
     cantidad=cantidad-1

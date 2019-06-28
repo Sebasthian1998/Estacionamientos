@@ -20,14 +20,17 @@
     if(Loginbtn){
         Loginbtn.addEventListener('submit',e=>{//Boton ingresar
             e.preventDefault()
+            
             //c(e.target.email)
             auth.signInWithEmailAndPassword(
                 e.target.email.value,
                 e.target.password.value
               )
                 .then(user => {
+                  
                   dibujarplaca(e.target.email.value)
                   habilitar()
+                 
                 })
                 .catch(err => {
                   c(err)
@@ -42,17 +45,25 @@
     function dibujarplaca(email){
     userRef.orderByChild('email').equalTo(email).on('child_added',data=>{//Buscamos el usuario por email para traer las placas
       select=d.createElement('select')
+      select.setAttribute("id", "selectid");
       //a=placaTemplate(data.val(),select,placasdiv) 
       //c(data.val().name)
       sessionStorage.setItem("username", data.val().name);//Guardamos en session el nombre del usuario
       placaTemplate(data.val(),select,placasdiv) 
+      value = select.value
+      c(value)
+      
     })}
 
     function habilitar(){//Habilitar y desailitar botones
       document.getElementById("Ingresarbtn").disabled = false
       document.getElementById("Validarbtn").disabled = true//Puede usarse display none
+      Loginbtn.addEventListener('input',e=>{
+        c(e.target.value)
+        sessionStorage.setItem("placa", e.target.value);
+        
+      })
       Ingresarbtn.addEventListener('click',e=>{
-        e.preventDefault
         window.location='../Maps/index.html'
       })
     }
@@ -61,18 +72,19 @@
       if(placas){
         let agregados=new Array(placas.length)//Crea un array con la cantidad de placas 
         let span=new Array(placas.length) //Se crea doble para poder insertar
-        let message=d.createElement('span')
+        let message=d.createElement('option')
         let messagecontent
-        messagecontent=`<p>Seleccione la placa con la que desea ingresar</p>`
+        messagecontent=`<span>Seleccione la placa </span>`
         message.innerHTML=messagecontent
+        select.appendChild(message)
         for(let i=0;i<placas.length;i++){
           span[i]=d.createElement('option')
-          agregados[i]=`<span value=${placas[i].Placa} class="agregados">${placas[i].Placa}</span>`
+          agregados[i]=`<span name="agregado${i}" id="i${i}" value=${placas[i].Placa} class="agregados">${placas[i].Placa}</span>`
           c(agregados[i])
           span[i].innerHTML=agregados[i]
           select.appendChild(span[i])
         }
-        placasdiv.appendChild(message)
+        //placasdiv.appendChild(message)
         placasdiv.appendChild(select)
         return placasdiv
       }
