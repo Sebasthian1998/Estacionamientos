@@ -27,7 +27,7 @@
                 e.target.password.value
               )
                 .then(user => {
-                  
+                  sessionStorage.setItem("correo",e.target.email.value)
                   dibujarplaca(e.target.email.value)
                   habilitar()
                  
@@ -88,7 +88,6 @@
         placasdiv.appendChild(select)
         return placasdiv
       }
-      
     }
     
 })(document,console.log,firebase)

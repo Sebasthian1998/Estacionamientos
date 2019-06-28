@@ -4,8 +4,8 @@
     lugar=sessionStorage.getItem("lugar")
     username=sessionStorage.getItem("username")
     placauser=sessionStorage.getItem("placa")
+     correouser=sessionStorage.getItem("correo")
     usernameid.innerHTML=`<span>${username}</span>`
-    //console.log(lugar)
     console.log(id)
     Name.innerHTML=`<span>${lugar}, ${placauser}</span>`
       
@@ -38,7 +38,7 @@ EstacionarRef.orderByChild('ID').equalTo(id).on('child_added',data=>{
    
     Reservabtn.addEventListener('click',e=>{
       e.preventDefault()
-      if(timeminutes.value<30){//Validacion, va aca sino el return solo estara al scope del timeuser
+      if(timeminutes.value<3){//Validacion, va aca sino el return solo estara al scope del timeuser
          alert('Ingrese una cantidad valida de minutos')
          timeminutes.value=''
          return
@@ -47,6 +47,8 @@ EstacionarRef.orderByChild('ID').equalTo(id).on('child_added',data=>{
       Reservar(key,valor.ID,cantidadactual,valor.Name,valor.Reservas)
       contacts.innerHTML=dibujar(cantidadactual) //se supone dibuja, con el nuevo ya no haria eso
       Reservabtn.style.display='none'
+      timecountuser=new Date(sessionStorage.getItem("Time"))
+      InsertDataInDB(username, correouser,placauser,valor.Name,new Date().toString()) //Nuev Tabla
       window.location='Tiempo.html'
     })
     Salidabtn.addEventListener('click',e=>{
@@ -91,6 +93,23 @@ function timeuser(){
   sessionStorage.setItem("Time",sessiondead)//Para poder trabajar con la hora final calculada en el otro archivo
 }
 
+function InsertDataInDB(name, email,placa,lugar,Time) { //Funcion que se invoca mas abajo, para poder insertar en la base de datos
+        let ReservadosRef = f.database().ref().child('reservados')
+        ReservadosRef.child(uuidv4()).set({ //El primer parametro sera para que se cree con ese ID unico
+          name, //Si los parametros se llaman igual a lo que se quiere almacenar en el objeto json se deja asi
+          email,
+          placa,
+          lugar,
+          Time
+        })
+}
+function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
 function dibujar(cantidad){
   li=`<span>${cantidad} reservas</span>`
   return li
@@ -106,7 +125,6 @@ function salida(key,uid,cantidad,Name,cantidadMax){
     return
   }
 }
-
 function Reservar(key,uid,cantidad,Name,cantidadMax){
   if(cantidad>0){
     c(cantidad)
@@ -132,8 +150,7 @@ function updateInDB(key,uid,actual,Name,cantidadMax) { //Funcion que se invoca m
         EstacionarRef.update( //El primer parametro sera para que se cree con ese ID unico
           updates
         )
-        //location.reload()
-
+        
 }
 })(document, console.log, firebase);
 

@@ -4,30 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+    <title>Tiempo de Reserva</title>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+   <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+   
+   <!-- Los iconos tipo Solid de Fontawesome-->
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+   <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+   <!-- Nuestro css-->
+   <link rel="stylesheet" type="text/css" href="css/tiempo.css" th:href="@{/css/index.css}">
+
 </head>
 <body>
-    <h1>Tiempo Restante</h1>
-    <div id="clock"></div>
+    <div class="modal-dialog text-center">
+        <div class=" main-section">
+            <div class="modal-content">
+                  <div class="">
+                    
+                    <h1>Tiempo Restante</h1>
+                    <div id="clock"></div>   
+               </div>
+          </div>
+      </div>            
+    </div>
 
-
-    
     <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
     <script type="text/javascript" src="Tiempo.js"></script>
     <script src = "https://smtpjs.com/v3/smtp.js"></script>
-   <script>
-       Email.send({
-    Host : "smtp25.elasticemail.com",
-    Username : "sebasthian.ampuero@unmsm.edu.pe",
-    Password : "c9b38006-7495-422b-90b8-e818475b9336",
-    To : 'antonio.ampuero20@gmail.com',
-    From : "sebasthian.ampuero@unmsm.edu.pe",
-    Subject : "CompuFisica en la bolsa",
-    Body : "Alv prro"
-}).then(
-  message => {//alert(message)
-  console.log(message)}
-);
-   </script>
 </body>
 </html>
