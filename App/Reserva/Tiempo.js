@@ -1,11 +1,23 @@
 
 ((d, c, f) => { 
-    id=sessionStorage.getItem("id")
-    lugar=sessionStorage.getItem("lugar")
-    username=sessionStorage.getItem("username")
-    placauser=sessionStorage.getItem("placa")
-    timecountuser=new Date(sessionStorage.getItem("Time"))
-    correo=sessionStorage.getItem("correo")
+  var firebaseConfig = {
+    apiKey: "AIzaSyBhIXl4RhU_cyV-wimje4RDfZwky7yBFYQ",
+    authDomain: "estacionamientos-790ec.firebaseapp.com",
+    databaseURL: "https://estacionamientos-790ec.firebaseio.com",
+    projectId: "estacionamientos-790ec",
+    storageBucket: "estacionamientos-790ec.appspot.com",
+    messagingSenderId: "975720178000",
+    appId: "1:975720178000:web:29fb7a9d2c9ec7d3",
+    };
+    f.initializeApp(firebaseConfig);
+    const db = f.database()
+    EstacionarRef = db.ref().child('Estacionamientos')
+    let id=sessionStorage.getItem("id") //Lugar ID,
+    lugar=sessionStorage.getItem("lugar"),
+    username=sessionStorage.getItem("username"),
+    placauser=sessionStorage.getItem("placa"),
+    timecountuser=new Date(sessionStorage.getItem("Time")),
+    correo=sessionStorage.getItem("correo"),
     countdown(timecountuser,'clock')
     
     function sendEmail(){
@@ -19,7 +31,7 @@
             Body : "Le faltan 2 minutos para que acabe el tiempo de reserva"
         }).then(
           message => {//alert(message)
-         console.log(message)
+         console.log(correo)
         }
         );
     }
@@ -36,6 +48,7 @@
           if(t.remainTime <= 1) {
             clearInterval(timerUpdate);
             //el.innerHTML = finalMessage;
+            getData()
             sessionStorage.setItem("Time",timecountuser-1)
           }
         }, 1000)
@@ -55,5 +68,24 @@
            remainTime
          }
        };
+
+       function updateInDB(cantidad) {
+        cantidad=cantidad+1
+        const EstacionamientoRef = db.ref(),
+          actualizacion2={
+              Cantidad:cantidad
+          }
+          updates={}
+          updates[`Estacionamientos/Estacionamiento18/CantidadActual`]=actualizacion2
+         EstacionamientoRef.update( 
+           updates
+         )           
+      }
+      function getData(){
+        EstacionarRef.orderByChild('ID').equalTo(id).on('child_added',data=>{
+            valores= data.val(),
+            cantidad=valores.CantidadActual.Cantidad
+            updateInDB(cantidad)
+        })}
 })(document, console.log, firebase);      
 //https://www.smtpjs.com/

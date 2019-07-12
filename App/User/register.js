@@ -34,7 +34,10 @@
             let jsonplacas=[]
             //c(agregados[0].value)
             for(let i=0; i<agregados.length;i++){
-              jsonplacas.push({"Placa":agregados[i].value})//para insertar dinamicamente datos en el json
+              if(validateplaca(agregados[i].value)){
+                jsonplacas.push({"Placa":agregados[i].value}) //para insertar dinamicamente datos en el json
+              }else return
+         
             }
             //c(jsonplacas)
             auth.createUserWithEmailAndPassword( //Metodo propio de firebase
@@ -79,9 +82,20 @@
           return true //Trae correcto
       }else{
        alert('Dni erroneo, formato no válido');
+
           return false
       }
     }
+    function validateplaca(placa){
+      let digitos=placa.length,
+      patron=/^[A-Z0-9]{6}$/;
+      if(patron.test(placa)==false){
+        alert('Placas incorrectas')
+        return false
+      }else return true
+      
+    }
+
     function createUserInDB(uid, name, email,surname,dni,placas) { //Funcion que se invoca mas abajo, para poder insertar en la base de datos
         let usersRef = f.database().ref().child('users')
         usersRef.child(uid).set({ //El primer parametro sera para que se cree con ese ID unico
@@ -98,7 +112,7 @@
             for(let i=0; i<placaid ;i++){
             let li=d.createElement('span')
             li.innerHTML=`
-            <input name="agregados" class="agregados"  placeholder="IngresePlaca">`
+            <input name="agregados" class="agregados" required placeholder="IngresePlaca">`
             placasid.appendChild(li)
             }
         }

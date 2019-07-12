@@ -15,7 +15,7 @@
 
    let mapOptions = {
      center: myLatlng,
-     zoom: 14,
+     zoom: 15,
      mapTypeId: google.maps.MapTypeId.roadmap //Cambiar esto
    };
 

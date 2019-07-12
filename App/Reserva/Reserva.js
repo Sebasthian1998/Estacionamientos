@@ -33,7 +33,7 @@ let cantidadactual
 EstacionarRef.orderByChild('ID').equalTo(id).on('child_added',data=>{
      let valor=data.val(),
      key=data.key,
-    cantidadactual=valor.CantidadActual
+    cantidadactual=valor.CantidadActual.Cantidad
     c(cantidadactual)
    
     Reservabtn.addEventListener('click',e=>{
@@ -50,11 +50,6 @@ EstacionarRef.orderByChild('ID').equalTo(id).on('child_added',data=>{
       timecountuser=new Date(sessionStorage.getItem("Time"))
       InsertDataInDB(username, correouser,placauser,valor.Name,new Date().toString()) //Nuev Tabla
       window.location='Tiempo.html'
-    })
-    Salidabtn.addEventListener('click',e=>{
-      e.preventDefault()
-      salida(key,valor.ID,cantidadactual,valor.Name,valor.Reservas)
-      contacts.innerHTML=dibujar(cantidadactual)
     })
     contacts.innerHTML=dibujar(cantidadactual)
 })
@@ -140,13 +135,13 @@ function updateInDB(key,uid,actual,Name,cantidadMax) { //Funcion que se invoca m
       c(uid,actual,Name,cantidadMax)
        const EstacionarRef = db.ref(),
          actualizacion={
-          CantidadActual:actual,
-          ID:uid,
-          Name:Name,
-          Reservas:cantidadMax
+          Cantidad:actual,
+         // ID:uid,
+         // Name:Name,
+         // Reservas:cantidadMax
          },
          updates={}
-         updates['Estacionamientos/'+key]=actualizacion
+         updates['Estacionamientos/'+key+'/CantidadActual']=actualizacion
         EstacionarRef.update( //El primer parametro sera para que se cree con ese ID unico
           updates
         )

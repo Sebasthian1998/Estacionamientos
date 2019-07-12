@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+    <title>Login</title>
+
+        <!--JQUERY-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+        <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        
+        <!-- Los iconos tipo Solid de Fontawesome-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+        <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    
+        <!-- Nuestro css-->
+        <link rel="stylesheet" type="text/css" href="User/css/login.css" th:href="@{/css/index.css}">
+
+</head>
+
+
+<body >
+            
+            <div class="container-fluid bg-primary sticky-tops">
+                    <nav class="navbar navbar-expand-md navbar-dark bg-primary container">
+                            <a class="navbar-brand" href="#">
+                                <img src="bootstrap-solid.svg" width="30" height="30" alt="">
+                                Garage ""
+                            </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                            </button>
+                        
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto mr-4">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../garage.html">Quienes somos?</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Ingresar
+                                    </a>
+                                <div class="dropdown-menu active" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item " href="login.html">Inicia sesion</a>
+                                    <a class="dropdown-item" href="register.html">Regisrate</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Promociones</a>
+                                </div>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link disabled" href="#">Disabled</a>
+                                </li>
+                            </ul>
+                            <span class="navbar-text text-white">
+                                    Contactanos: 939602978
+                            </span>
+                            <!--  <form class="form-inline my-2 my-lg-0">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form>   -->
+                            </div>
+                        </nav>
+                        </div><!--NAVBAR-->
+        <div class="modal-dialog text-center">
+        <div class="col-sm-8 main-section">
+            <div class="modal-content">
+                <div class="col-12 user-img">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2zNtTQGrvQ4J_mIcN4H_cMs9R6RAlAkTJejfNF5S64Pl3dncOrw"/>
+                </div>
+                <form class="col-12" action="" id="Loginbtn" >
+                    <div class="form-group" id="user-group">
+                        <input type="email" class="form-control" id="email" type="email" name="email" placeholder="Correo electronico" name="correo" required/>
+                    </div>
+                    <div class="form-group" id="contrasena-group">
+                        <input type="password" id="password" class="form-control" placeholder="Contraseña" name="password" required/>
+                    </div>
+                    <div id="placas"></div>
+                    <button id="Validarbtn" class="btn btn-primary" >  Validar </button>
+                    <button id="Ingresarbtn" class="btn btn-primary" disabled><i class="fas fa-sign-in-alt"></i> Ingresar </button>
+                </form>
+                <div class="col-12 forgot">
+                    <p>¿No tiene una Cuenta?</p>
+                    <a href="User/Register.html">Registrate</a>
+                </div>    
+
+                <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+                <script type="text/javascript" src="User/login.js"></script>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

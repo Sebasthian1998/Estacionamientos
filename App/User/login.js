@@ -21,7 +21,7 @@
         Loginbtn.addEventListener('submit',e=>{//Boton ingresar
             e.preventDefault()
             
-            //c(e.target.email)
+            //c(e.target.email,'PROBANDO')
             auth.signInWithEmailAndPassword(
                 e.target.email.value,
                 e.target.password.value
@@ -34,7 +34,7 @@
                 })
                 .catch(err => {
                   c(err)
-                  alert('Usuario o contraseña no validos')
+                  //alert('Usuario o contraseña no validos')Fallo aca
                   password.value=''
                   email.value=''
                 })  
@@ -46,6 +46,7 @@
     userRef.orderByChild('email').equalTo(email).on('child_added',data=>{//Buscamos el usuario por email para traer las placas
       select=d.createElement('select')
       select.setAttribute("id", "selectid");
+      select.setAttribute("required", "");
       //a=placaTemplate(data.val(),select,placasdiv) 
       //c(data.val().name)
       sessionStorage.setItem("username", data.val().name);//Guardamos en session el nombre del usuario
@@ -61,10 +62,17 @@
       Loginbtn.addEventListener('input',e=>{
         c(e.target.value)
         sessionStorage.setItem("placa", e.target.value);
-        
       })
       Ingresarbtn.addEventListener('click',e=>{
-        window.location='../Maps/index.html'
+        if(sessionStorage.getItem("placa")=='' || sessionStorage.getItem("placa").length>7){
+          c(sessionStorage.getItem("placa"))
+          alert("Inserte una placa")
+          location.reload()
+        
+      }else{
+        c(sessionStorage.getItem("placa"))
+          window.location='../Maps/index.html'
+      }
       })
     }
    
@@ -74,12 +82,13 @@
         let span=new Array(placas.length) //Se crea doble para poder insertar
         let message=d.createElement('option')
         let messagecontent
-        messagecontent=`<span>Seleccione la placa </span>`
+        messagecontent=`<span>Seleccione la placa</span>`
         message.innerHTML=messagecontent
         select.appendChild(message)
         for(let i=0;i<placas.length;i++){
           span[i]=d.createElement('option')
-          agregados[i]=`<span name="agregado${i}" id="i${i}" value=${placas[i].Placa} class="agregados">${placas[i].Placa}</span>`
+          span[i].setAttribute("value",`${placas[i].Placa} `)
+          agregados[i]=`<span name="agregado${i}"  id="i${i}"  class="agregados">${placas[i].Placa}</span>`
           c(agregados[i])
           span[i].innerHTML=agregados[i]
           select.appendChild(span[i])
